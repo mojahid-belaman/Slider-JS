@@ -1,5 +1,5 @@
 // Get Slider Items | Array.from [ES6 feature]
-let slideImgs = Array.from(document.querySelectorAll('.slide-container img'));
+let slideImgs = document.querySelectorAll('.slide-container img');
 
 // Get Number Of Slider
 let slideCount = slideImgs.length;
@@ -56,8 +56,22 @@ for (let i = 0; i < myLi.length; i++)
     }
 }
 
-// Execute Function Checker
-myChecker();
+// Execute Function Checker every Two Second 
+window.onload = function () {
+
+    myChecker();
+    let myVar = setInterval(() => {
+        myChecker();
+        funNext();
+        if (currSlide == slideCount)
+        {
+            currSlide = 1;
+            myChecker();
+            clearInterval(myVar);
+        }
+    }, 2000)
+    
+}
 
 // Hundle Click On Previous and Next Button
 btnNext.onclick = funNext;
