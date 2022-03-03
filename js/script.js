@@ -65,8 +65,8 @@ window.onload = function () {
         funNext();
         if (currSlide == slideCount)
         {
-            currSlide = 1;
             myChecker();
+            currSlide = 1;
             clearInterval(myVar);
         }
     }, 2000)
