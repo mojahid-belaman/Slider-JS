@@ -10,8 +10,8 @@ body {
 
 .slide-container {
     margin: 10px auto;
-    width: 650px;
-    height: 300px;
+    width: 1300px;
+    height: 800px;
     position: relative;
 }
 
@@ -38,7 +38,7 @@ body {
 }
 
 .slide-control {
-    width: 650px;
+    width: 1300px;
     margin: auto;
 }
 
@@ -85,7 +85,7 @@ body {
     height: 28px;
     width: 28px;
     border-radius: 5px;
-    margin: 0 13px;
+    margin: 0 20px;
     line-height: 28px;
     cursor: pointer;
     user-select: none;
@@ -94,4 +94,16 @@ body {
 .slide-control .indicator ul li.active {
     background-color: darkcyan;
     color: #fff;
+}
+
+.slide-control .prev.disable {
+    background-color: #008b8b4f;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.slide-control .next.disable {
+    background-color: #008b8b4f;
+    color: #fff;
+    cursor: not-allowed;
 }

@@ -29,6 +29,8 @@ for(let i = 1; i <= slideCount; i++)
     // Set Custom Attribute
     myLi.setAttribute('data-slide', i);
 
+    myLi.setAttribute('id', 'slide' + i);
+
     // Set Item Content
     myLi.appendChild(document.createTextNode(i));
 
@@ -42,6 +44,18 @@ document.getElementById('indicator').appendChild(myUl);
 // Get Created Element UL By Js
 let paginationUl = document.getElementById('pagination');
 
+// Get Created Element LI By JS
+let myLi = Array.from(document.querySelectorAll('#pagination li'))
+
+// On Click The Element Li Make New Slider
+for (let i = 0; i < myLi.length; i++)
+{
+    myLi[i].onclick = function () {
+        currSlide = myLi[i].getAttribute('data-slide');
+        myChecker();
+    }
+}
+
 // Execute Function Checker
 myChecker();
 
@@ -49,21 +63,59 @@ myChecker();
 btnNext.onclick = funNext;
 btnPrev.onclick = funPrev;
 
+
 // Next Slide Function
 function funNext() {
-    console.log('next');
+    
+    if (currSlide != slideCount)
+    {
+        currSlide++;
+        myChecker();
+    }
+
 }
 
 // Previous Slide Function
 function funPrev() {
-    console.log('previous');
+
+    if (currSlide > 1)
+    {
+        currSlide--;
+        myChecker();
+    }
 }
 
 function myChecker() {
-    
+
+    // Set String Slider With Number the Slider and Count Slider
     slideNumStr.textContent = `Slide #${currSlide} of ${slideCount}`;
 
+    // Remove All Class active
+    removeClassActive();
+    
     slideImgs[currSlide - 1].classList.add('active');
-
+    
+    // Add Class Active In Element Li To Apply CSS
     paginationUl.children[currSlide - 1].classList.add('active');
+
+    // Check First Li and Last Li To Disable Button
+    (currSlide == 1) ? btnPrev.classList.add('disable') : btnPrev.classList.remove('disable');
+    
+    (currSlide == slideCount) ? btnNext.classList.add('disable') : btnNext.classList.remove('disable');
+    
+}
+
+// Remove All Class Active
+function removeClassActive() {
+    
+    // Loop Slider Images and Remove Class Active
+    for (const elem of slideImgs) {
+        elem.classList.remove('active');
+    }
+    
+    // Loop Element li and Remove Class Active
+    for (const elem of paginationUl.children) {
+        elem.classList.remove('active');
+    }
+
 }
